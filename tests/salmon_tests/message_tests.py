@@ -1,4 +1,6 @@
 # Copyright (C) 2008 Zed A. Shaw.  Licensed under the terms of the GPLv3.
+from __future__ import print_function
+
 from nose.tools import assert_equal, assert_raises
 
 from salmon import mail, encoding
@@ -40,7 +42,7 @@ def test_mail_request():
     assert_equal(msg['from'], msg['fRom'])
 
     # make sure repr runs
-    print repr(msg)
+    print(repr(msg))
 
     return msg
 
@@ -145,7 +147,7 @@ def test_mail_response_mailing_list_headers():
 
     msg = mail.MailResponse(From='somedude@localhost', To=list_addr, Subject='subject', Body="Mailing list reply.")
 
-    print repr(msg)
+    print(repr(msg))
 
     msg["Sender"] = list_addr
     msg["Reply-To"] = list_addr

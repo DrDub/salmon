@@ -4,6 +4,7 @@ really belong anywhere else in the modules.  This module
 is kind of a dumping ground, so if you find something that
 can be improved feel free to work up a patch.
 """
+from __future__ import print_function
 
 from salmon import server, routing
 import sys, os
@@ -89,7 +90,7 @@ def check_for_pid(pid, force):
     then it will remove the file and not exit if it's there."""
     if os.path.exists(pid):
         if not force:
-            print "PID file %s exists, so assuming Salmon is running.  Give -FORCE to force it to start." % pid
+            print("PID file %s exists, so assuming Salmon is running.  Give -FORCE to force it to start." % pid)
             sys.exit(1)
             return # for unit tests mocking sys.exit
         else:
@@ -118,7 +119,7 @@ def start_server(pid, force, chroot, chdir, uid, gid, umask, settings_loader, de
     settings.receiver.start()
 
     if debug:
-        print "Salmon started in debug mode. ctrl-c to quit..."
+        print("Salmon started in debug mode. ctrl-c to quit...")
         import time
         try:
             while True:

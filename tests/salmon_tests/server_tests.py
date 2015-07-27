@@ -1,4 +1,6 @@
 # Copyright (C) 2008 Zed A. Shaw.  Licensed under the terms of the GPLv3.
+from __future__ import print_function
+
 from mock import Mock, patch
 from nose.tools import assert_equal, with_setup
 
@@ -78,7 +80,7 @@ def test_relay_resolve_relay_host(query):
 
 def test_relay_reply():
     relay = server.Relay("localhost", port=8899)
-    print "Relay: %r" % relay
+    print("Relay: %r" % relay)
 
     relay.reply(test_mail_request(), 'from@localhost', 'Test subject', 'Body')
 
