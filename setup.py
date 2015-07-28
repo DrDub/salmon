@@ -6,11 +6,17 @@ except ImportError:
     from distutils.core import setup
 
 install_requires = [
-    'argparse',
     'chardet',
     'lmtpd>=4',
-    'dnspython',
+    'six',
 ]
+
+if sys.version_info[0] == 2:
+    install_requires.append("dnspython")
+    if sys.version_info[1] == 6:
+        install_requires.append("argparse")
+elif sys.version_info[0] == 3:
+    install_requires.append("dnspython3")
 
 if sys.platform != 'win32':  # Can daemonize
     install_requires.append('python-daemon')
