@@ -75,6 +75,7 @@ import string
 import sys
 
 import chardet
+import six
 
 DEFAULT_ENCODING = "utf-8"
 DEFAULT_ERROR_HANDLING = "strict"
@@ -482,7 +483,7 @@ def guess_encoding_and_decode(original, data, errors=DEFAULT_ERROR_HANDLING):
 
 def attempt_decoding(charset, dec):
     try:
-        if isinstance(dec, unicode):
+        if isinstance(dec, six.text_type):
             # it's already unicode so just return it
             return dec
         else:
@@ -552,7 +553,7 @@ def _parse_charset_header(data):
     try:
         while True:
             if not oddness:
-                left, enc_header, enc_data, continued = scanner.next()
+                left, enc_header, enc_data, continued = six.next(scanner)
             else:
                 left, enc_header, enc_data, continued = oddness
                 oddness = None

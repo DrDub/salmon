@@ -11,11 +11,14 @@ APIs for doing attachments and such.
 """
 
 
-import mimetypes
-from salmon import encoding, bounce
 from email.utils import parseaddr
+import mimetypes
 import os
 import warnings
+
+import six
+
+from salmon import encoding, bounce
 
 
 # You can change this to 'Delivered-To' on servers that support it like Postfix
@@ -30,7 +33,7 @@ def _decode_header_randomness(addr):
         return set()
     elif isinstance(addr, list):
         return set(parseaddr(a.lower())[1] for a in addr)
-    elif isinstance(addr, basestring):
+    elif isinstance(addr, six.string_types):
         return set([parseaddr(addr.lower())[1]])
     else:
         raise encoding.EncodingError("Address must be a string or a list not: %r", type(addr))
