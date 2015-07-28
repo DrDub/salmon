@@ -11,15 +11,18 @@ install_requires = [
     'six',
 ]
 
+daemon_version = 'python-daemon'
+
 if sys.version_info[0] == 2:
-    install_requires.append("dnspython")
+    install_requires.append('dnspython')
     if sys.version_info[1] == 6:
-        install_requires.append("argparse")
+        install_requires.append('argparse')
+        daemon_version = 'python-daemon<1.7'
 elif sys.version_info[0] == 3:
-    install_requires.append("dnspython3")
+    install_requires.append('dnspython3')
 
 if sys.platform != 'win32':  # Can daemonize
-    install_requires.append('python-daemon')
+    install_requires.append(daemon_version)
 else:
     install_requires.append('lockfile')
 
@@ -56,7 +59,7 @@ config = {
         'Topic :: Communications :: Email',
         'Topic :: Software Development :: Libraries :: Application Frameworks'
         ],
-    "entry_points": {
+    'entry_points': {
         'console_scripts':
             ['salmon = salmon.commands:main'],
     },
