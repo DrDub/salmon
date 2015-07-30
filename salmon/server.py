@@ -200,10 +200,13 @@ class SMTPReceiver(smtpd.SMTPServer):
                           Peer, From, To)
             undeliverable_message(Data, "Error in message %r:%r:%r, look in logs." % (Peer, From, To))
 
-
     def close(self):
         """Doesn't do anything except log who called this, since nobody should.  Ever."""
-        logging.error(traceback.format_exc())
+        if six.PY3:
+            trace = traceback.format_exc(chain=False)
+        else:
+            trace = traceback.format_exc()
+        logging.error(trace)
 
 
 class LMTPReceiver(lmtpd.LMTPServer):
@@ -256,7 +259,12 @@ class LMTPReceiver(lmtpd.LMTPServer):
 
     def close(self):
         """Doesn't do anything except log who called this, since nobody should.  Ever."""
-        logging.error(traceback.format_exc())
+        if six.PY3:
+            trace = traceback.format_exc(chain=False)
+        else:
+            trace = traceback.format_exc()
+        logging.error(trace)
+
 
 class QueueReceiver(object):
     """

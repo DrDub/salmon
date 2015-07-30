@@ -40,7 +40,7 @@ def test_RoutingBase():
     assert len(Router.REGISTERED) == 0
 
     setup_router(['salmon_tests.handlers.simple_fsm_mod'])
-    from handlers import simple_fsm_mod
+    from .handlers import simple_fsm_mod
 
     assert len(Router.ORDER) > 0
     assert len(Router.REGISTERED) > 0
@@ -121,7 +121,7 @@ def test_route___get___raises():
     br.wont_work("raises")
 
 
-@patch('__builtin__.reload', new=Mock(side_effect=ImportError))
+@patch('salmon.routing.reload', new=Mock(side_effect=ImportError))
 @patch('salmon.routing.LOG', new=Mock())
 def test_reload_raises():
     Router.LOG_EXCEPTIONS = True

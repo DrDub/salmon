@@ -63,7 +63,7 @@ def main():
 
     for cmd, help_txt in COMMANDS:
         function = globals()["{0}_command".format(cmd)]
-        cmd_parser = subparsers.add_parser(cmd, description=function.func_doc, help=help_txt, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        cmd_parser = subparsers.add_parser(cmd, description=function.__doc__, help=help_txt, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
         function(cmd_parser)
 
@@ -364,7 +364,7 @@ def cleanse_command(parser):
             try:
                 mail = encoding.from_message(msg)
                 outbox.add(encoding.to_string(mail))
-            except encoding.EncodingError, exc:
+            except encoding.EncodingError as exc:
                 print("ERROR: %s" % exc)
                 error_count += 1
 
