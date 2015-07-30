@@ -163,7 +163,7 @@ def test_mail_response_mailing_list_headers():
 
     headers = ['Sender', 'Reply-To', 'List-Id', 'Return-Path', 'In-Reply-To', 'References', 'Precedence']
     for header in headers:
-        assert msg[header] == req[header]
+        assert msg[header] == req[header], "%s != %s" % (msg[header], req[header])
 
     # try a delete
     del msg['Precedence']

@@ -48,10 +48,10 @@ def test_pop():
     assert hasattr(msg, "Data"), "IncomingMessage doesn't have Data attribute"
     msg = mail.MailRequest(msg.Peer, msg.From, msg.To, msg.Data)
 
-    assert msg['to'] == "test@localhost"
-    assert msg['from'] == "test@localhost"
-    assert msg['subject'] == "Test"
-    assert msg.body() == "Test"
+    assert msg['to'] == "test@localhost", "%s != 'test@locahost'" % msg['to']
+    assert msg['from'] == "test@localhost", "%s != 'test@locahost'" % msg['from']
+    assert msg['subject'] == "Test", "%s != 'Test'" % msg['subject']
+    assert msg.body() == "Test", "%s != 'Test'" % msg.body()
 
     assert q.count() == 0, "Queue should be empty."
     assert not q.pop()[0]
