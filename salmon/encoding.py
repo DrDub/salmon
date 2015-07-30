@@ -436,17 +436,20 @@ def properly_encode_header(value, encoder, not_email):
     addresses by changing the '@' to '-AT-'.  This is where
     VALUE_IS_EMAIL_ADDRESS exists.  It's a simple lambda returning True/False
     to check if a header value has an email address.  If you need to make this
-    check different, then change this.
+    checVk different, then change this.
     """
+    # i suspect this function and those that call it are doing too much
+    # TODO: investigate
     try:
-        return value.encode("ascii")
+        value.encode("ascii")
+        return value
     except UnicodeEncodeError:
         if not_email is False and VALUE_IS_EMAIL_ADDRESS(value):
             # this could have an email address, make sure we don't screw it up
             name, address = parseaddr(value)
-            return '"%s" <%s>' % (encoder.header_encode(name.encode("utf-8")), address)
+            return '"%s" <%s>' % (name, address)
 
-        return encoder.header_encode(value.encode("utf-8"))
+        return value
 
 
 def header_to_mime_encoding(value, not_email=False):
