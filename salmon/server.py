@@ -14,6 +14,7 @@ import traceback
 
 from dns import resolver
 import lmtpd
+import six
 
 from salmon import queue, mail, routing, version
 from salmon.bounce import PRIMARY_STATUS_CODES, SECONDARY_STATUS_CODES, COMBINED_STATUS_CODES
