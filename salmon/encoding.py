@@ -263,6 +263,9 @@ class MIMEPart(MIMEBase):
         except UnicodeError:
             encoded = content.encode('utf-8')
             charset = 'utf-8'
+        except AttributeError:
+            # content is already bytes
+            encoded = content
 
         self.set_payload(encoded, charset=charset)
 
@@ -354,7 +357,7 @@ def to_message(mail):
             del out[k]
             out[k] = value
         else:
-            out[k.encode('ascii')] = value
+            out[k] = value
 
     out.extract_payload(mail)
 
@@ -469,7 +472,7 @@ def header_from_mime_encoding(header):
 
 def guess_encoding_and_decode(original, data, errors=DEFAULT_ERROR_HANDLING):
     try:
-        charset = chardet.detect(str(data))
+        charset = chardet.detect(six.binary_type(data))
 
         if not charset['encoding']:
             raise EncodingError("Header claimed %r charset, but detection found none.  Decoding failed." % original)
