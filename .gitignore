@@ -6,5 +6,4 @@ env
 build
 dist
 *.egg*
-tests/*.db
 .coverage

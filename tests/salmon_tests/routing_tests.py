@@ -23,7 +23,7 @@ def test_MemoryStorage():
 
 
 def test_ShelveStorage():
-    store = ShelveStorage("tests/states.db")
+    store = ShelveStorage("run/states.db")
 
     store.set(test_ShelveStorage.__module__, "tester@localhost", "TESTED")
     assert store.get(test_MemoryStorage.__module__, "tester@localhost") == "TESTED"
