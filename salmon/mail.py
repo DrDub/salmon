@@ -59,10 +59,15 @@ class IncomingMessage(object):
         # this is where your parsed email object should go
         self.Email = None
 
-    def __str__(self):
+    def __bytes__(self):
         """
         Return original string usable for storage into a queue or transmission.
         """
+        return self.Data
+
+    def __str__(self):
+        if six.PY3:
+            raise AttributeError("*waves hand* this is not the method you are looking for")
         return self.Data
 
     def __repr__(self):

@@ -21,10 +21,13 @@ any errors it prints them out, and returns False.
 """
 from __future__ import print_function
 
+import re
+
+import six
+
 from salmon import server, routing, mail
 from salmon.queue import Queue
 from nose.tools import assert_equal
-import re
 
 TEST_QUEUE = "run/queue"
 
@@ -93,7 +96,7 @@ def delivered(pattern, to_queue=None):
             return False
 
         regp = re.compile(pattern)
-        if regp.search(str(msg)):
+        if regp.search(pattern.__class__(msg)):
             msg = inq.get(key)
             return msg
 
