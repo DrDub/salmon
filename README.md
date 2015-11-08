@@ -1,14 +1,15 @@
-The Salmon Mail Server
-
-======================
+Salmon - A Python SMTPd
+=======================
 
 Salmon is a pure Python SMTP server designed to create robust and complex mail
-applications in the style of modern web frameworks such as Django. Unlike
-traditional SMTP servers like Postfix or Sendmail, Salmon has all the features
-of a web application stack (ORM, templates, routing, handlers, state machines,
-Python) without needing to configure alias files, run newaliases, or juggle
-tons of tiny fragile processes. Salmon also plays well with other web
-frameworks and Python libraries.
+applications in the style of modern web frameworks. Unlike traditional SMTP
+servers such as Postfix and Sendmail, Salmon has all the features of a web
+application stack (templates, routing, handlers, state machine, Python) without
+the need to configure alias files, arcane command syntax, or juggle a swarm of
+fragile processes. Salmon also plays well with other frameworks and libraries,
+such as Django and SQLAlchemy.
+
+Salmon has been released uner the GNU GPLv3, as published by the FSF.
 
 Features
 ========
@@ -29,13 +30,11 @@ Python unicode back into nice clean ascii and/or UTF-8 mail.
 multiple machines.
 * Can run as an non-root user on port 25 to reduce the risk of intrusion.
 * Salmon can also run in a completely separate virtualenv for easy deployment.
-* Spam filtering is baked into Salmon using the SpamBayes library.
-* A flexible and easy to use routing system lets you write stateful or stateLESS
+* A flexible and easy to use routing system lets you write stateful or state*less*
 handlers of your email.
 * Helpful tools for unit testing your email applications with nose, including
 spell checking with PyEnchant.
 * Ability to use Jinja2 or Mako templates to craft emails including the headers.
-* A full alternative to the default optparse library for doing commands easily.
 * Easily configurable to use alternative sending and receiving systems, database
 libraries, or any other systems you need to talk to.
 * Yet, you don't *have* to configure everything to get stated.  A simple
@@ -46,18 +45,18 @@ salmon gen command lets you get an application up and running quick.
 Installing
 ==========
 
-There's a setup.py
+`pip install salmon-mail`
 
 Project Information
 ===================
 
-We, uh, don't really have any docs yet.
+Project documentation can be found [here](http://salmon-mail.readthedocs.org/)
 
 Fork
 -----
 
 Salmon is a fork of Lamson. In the summer of 2012 (2012-07-13 to be exact),
-Lamson was relicenced under a BSD variant that was revokable. The two clauses
+Lamson was relicensed under a BSD variant that was revokable. The two clauses
 that were of most concern:
 
     4. Contributors agree that any contributions are owned by the copyright holder
@@ -82,9 +81,9 @@ https://github.com/moggers87/salmon
 Status
 ------
 
-As this project has only just been forked, there may be bugs that have been
-fixed upstream, but can't be backported due to licencing issues.  The source is
-well documented, has nearly full test coverage, and runs on Python 2.6 and 2.7.
+Right now things are in flux as I'm moderning the codebase and start porting to
+Python 3. The source is well documented (though I suspect some of the comments 
+are wrong, has nearly full test coverage, and runs on Python 2.6 and 2.7.
 
 
 License
@@ -101,7 +100,7 @@ Contributing
 Pull requests and issues are most welcome.
 
 I will not accept code that has been submitted for inclusion in the original
-project due to the terms of its licence.
+project due to the terms of its new licence.
 
 Testing
 =======
@@ -140,4 +139,4 @@ semantics.
 If you find yourself lost in source code, just yell.
 
 PEP-8 should be followed where possible, but feel free to ignore the 80 character
-limit it imposes.
+limit it imposes (120 is a good marker IMO).
